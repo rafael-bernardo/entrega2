@@ -4,45 +4,36 @@ from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .forms import PostForm
+from django.views.generic.list import ListView
+from django.views.generic.edit import UpdateView, DeleteView, CreateView
+from django.views.generic.detail import DetailView
+
 # Create your views here.
 
-def lista_locais(request):
-    context = {'locais': Post.objects.all()}
-    return render(request, 'locais/index.html', context)
+class LocaisList(ListView):
+    model = Post
+    template_name = 'locais/index.html'
+    context_object_name = 'locais'
 
+class LocaisDetail(DetailView):
+    model = Post
+    template_name = 'locais/detail.html'
+    context_object_name = 'locais'
 
-def detail_locais(request, pk):
-    locais = get_object_or_404(Post, pk=pk)
-    context = {'locais': locais}
-    return render(request, 'locais/detail.html', context)
+class LocaisCreate(CreateView):
+    model = Post
+    template_name = 'locais/create.html'
+    form_class = PostForm
+    success_url = '/locais'
 
-def update_locais(request, pk):
-    locais = get_object_or_404(Post, pk=pk)
-    if request.method == 'POST':
-        forms = PostForm(request.POST, instance=locais)
-        if forms.is_valid():
-            forms.save()
-            return HttpResponseRedirect(reverse('locais:lista_locais'))
-    forms = PostForm(instance=locais)
-    context = {'form': forms}
-    return render(request, 'locais/update.html', context)
+class LocaisUpdate(UpdateView):
+    model = Post
+    template_name = 'locais/update.html'
+    form_class = PostForm
+    success_url = '/locais'
 
-def create_locais(request):
-    if request.method == 'POST':
-        forms = PostForm(request.POST)
-        if forms.is_valid():
-            forms.save()
-            return HttpResponseRedirect(reverse('locais:lista_locais'))
-    forms = PostForm()
-    context = {'form': forms}
-    return render(request, 'locais/create.html', context)
-
-#delete view with confirmation page
-def delete_locais(request, pk):
-    if request.method == 'POST':
-        locais = Post.objects.get(pk=pk)
-        locais.delete()
-        return HttpResponseRedirect(reverse('locais:lista_locais'))
-    else:
-        context = {'locais': Post.objects.get(pk=pk)}
-        return render(request, 'locais/delete.html', context)
+class LocaisDelete(DeleteView):
+    model = Post
+    template_name = 'locais/delete.html'
+    success_url = '/locais'
+    context_object_name = 'locais'

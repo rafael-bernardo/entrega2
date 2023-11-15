@@ -4,9 +4,9 @@ from . import views
 app_name = 'locais'
 
 urlpatterns = [
-    path('', views.lista_locais, name='lista_locais'),
-    path('<int:pk>/', views.detail_locais, name='detail_locais'),
-    path('create/', views.create_locais, name='create_locais'),
-    path('update/<int:pk>/', views.update_locais, name='update_locais'),
-    path('delete/<int:pk>/', views.delete_locais, name='delete_locais'),
+    path('', views.LocaisList.as_view(), name='lista_locais'),
+    path('<int:pk>/', views.LocaisDetail.as_view(), name='detail_locais'),
+    path('create/', views.LocaisCreate.as_view(), name='create_locais'),
+    path('<int:pk>/update/', views.LocaisUpdate.as_view(), name='update_locais'),
+    path('<int:pk>/delete/', views.LocaisDelete.as_view(), name='delete_locais'),
 ]
