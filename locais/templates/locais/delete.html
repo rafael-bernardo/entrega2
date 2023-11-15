@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h2>Delete</h2>
+<h3>Você deseja deletar o local "{{ locais.title }}"?</h3>
+<form action="" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Delete">
+</form>
+{% endblock %}

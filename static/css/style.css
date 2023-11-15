@@ -1,0 +1,66 @@
+/* Reset de estilos para garantir uma base consistente */
+body, h1, h2, h3, p, ul {
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo geral da página */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4; /* Cor de fundo geral */
+    color: #333; /* Cor do texto */
+}
+
+.container-fluid {
+    max-width: 1200px; /* Largura máxima do conteúdo */
+    margin: 0 auto; /* Centralizar o conteúdo na página */
+}
+
+/* Estilo do cabeçalho */
+.navbar {
+    background-color: #343a40; /* Cor de fundo do cabeçalho */
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+}
+
+.navbar-dark .navbar-toggler-icon {
+    background-color: #fff; /* Cor do ícone do botão de navegação */
+}
+
+.navbar-nav {
+    margin-left: auto; /* Alinhar os itens à direita */
+}
+
+.nav-item {
+    margin-right: 15px; /* Espaçamento entre os itens do menu */
+}
+
+.nav-link {
+    color: #fff; /* Cor dos links no cabeçalho */
+}
+
+/* Estilo do conteúdo principal */
+.container {
+    padding: 20px;
+}
+
+/* Rodapé */
+footer {
+    background-color: #343a40;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+}
+
+/* Estilos responsivos */
+@media (max-width: 767px) {
+    .navbar-nav {
+        margin-left: 0;
+    }
+
+    .nav-item {
+        margin: 0 10px;
+    }
+}

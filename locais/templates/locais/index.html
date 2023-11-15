@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h2>Locais</h2>
+{% for local in locais %}
+    <a href="{% url 'locais:detail_locais' local.pk %}">{{ local.title }}</a>
+{% endfor %}
+<a href="{% url 'locais:create_locais' %}" class="btn btn-primary">Create</a>
+{% endblock %}
