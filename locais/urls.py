@@ -9,4 +9,5 @@ urlpatterns = [
     path('create/', views.LocaisCreate.as_view(), name='create_locais'),
     path('<int:pk>/update/', views.LocaisUpdate.as_view(), name='update_locais'),
     path('<int:pk>/delete/', views.LocaisDelete.as_view(), name='delete_locais'),
+    path('<int:pk>/comment_create/', views.comment_create, name='comment_create'),
 ]

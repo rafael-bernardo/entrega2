@@ -7,4 +7,11 @@
 <p>{{ locais.image_url }}</p>
 <a href="{% url 'locais:update_locais' locais.pk %}" class="btn btn-primary">Update</a>
 <a href="{% url 'locais:delete_locais' locais.pk %}" class="btn btn-danger">Delete</a>
+<h2>Comentários</h2>
+  {% for comment in comments %}
+    <p>	&#60;{{ comment.author.username }} - {{ comment.created_at|date:"F d, Y H:i" }}	&#62;</p>
+    <p>{{ comment.content }}</p>
+    <br><br>
+  {% endfor %}
+  <a href="{% url 'locais:comment_create' locais.pk %}">Comente</a>
 {% endblock %}

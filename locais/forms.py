@@ -1,4 +1,4 @@
-from .models import Post
+from .models import Post, Comment
 from django import forms
 
 class PostForm(forms.ModelForm):
@@ -9,3 +9,10 @@ class PostForm(forms.ModelForm):
     place = forms.CharField(max_length=100, required=True)
     content = forms.CharField(required=True)
     image_url = forms.CharField(required=False)
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['author', 'content']
+    content = forms.CharField(required=True)
+    
