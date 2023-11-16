@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>{{ category.name }}</h2>
+    <p>{{ category.description }}</p>
+
+    <h3>Posts nessa categoria:</h3>
+    <div class="card-group">
+        {% for local in locais %}
+        <div class="col-md-4">
+            <div class="card">
+                <img src="{{ local.image_url }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h3 class="card-title">{{ local.title }}</h3>
+                    <ul>
+                        {% for category in local.categories.all %}
+                        <li><a href="{% url 'locais:category_detail' category.id %}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tags" viewBox="0 0 16 16">
+                                <path d="M3 2v4.586l7 7L14.586 9l-7-7H3zM2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586V2z"/>
+                                <path d="M5.5 5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm0 1a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM1 7.086a1 1 0 0 0 .293.707L8.75 15.25l-.043.043a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 0 7.586V3a1 1 0 0 1 1-1v5.086z"/>
+                              </svg>
+                              {{ category.name }}
+                            </a>
+                        </li>
+                          {% endfor %}
+                      </ul> 
+                    <p class="card-text">{{ local.place }}</p>
+                    <p class="card-text">{{ local.content }}</p>
+                    <a href="{% url 'locais:detail_locais' local.pk %}" class="btn btn-primary">Detalhes</a>
+                    <a href="{% url 'locais:update_locais' local.pk %}" class="btn btn-primary">Update</a>
+                    <a href="{% url 'locais:delete_locais' local.pk %}" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        </div>
+    {% endblock %}
+

@@ -1,4 +1,4 @@
-from .models import Post, Comment
+from .models import Post, Comment, Category
 from .forms import PostForm, CommentForm
 from django.views.generic.list import ListView
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
@@ -51,3 +51,13 @@ def comment_create(request, pk):
     else:
         form = CommentForm()
     return render(request, 'locais/comment_create.html', {'form': form})
+
+def category_list(request):
+    categories = Category.objects.all()
+    context = { 'categories': categories }
+    return render(request, 'locais/category_list.html', context)
+
+def category_detail(request, category_id):
+    category = get_object_or_404(Category, pk=category_id)
+    posts = Post.objects.filter(categories=category)
+    return render(request, 'locais/category_detail.html', {'category': category, 'locais': posts})

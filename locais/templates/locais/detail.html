@@ -2,6 +2,11 @@
 {% load static %}
 {% block content %}
 <h2>{{ locais.title }}</h2>
+<ul>
+  {% for category in locais.categories.all %}
+  <li><a href="{% url 'locais:category_detail' category.id %}">{{ category.name }}</a></li>
+    {% endfor %}
+</ul> 
 <p>{{ locais.place }}</p>
 <p>{{ locais.content }}</p>
 <p>{{ locais.image_url }}</p>
