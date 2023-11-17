@@ -9,6 +9,7 @@
         <img src="{{ local.image_url }}" class="card-img-top" alt="...">
         <div class="card-body">
             <h4 class="card-title">{{ local.title }}</h4>
+            <p class="card-text">{{ local.created_at|date }}</p>
             <ul>
                 {% for category in local.categories.all %}
                 <li><a href="{% url 'locais:category_detail' category.id %}">
